@@ -1,0 +1,131 @@
+
+CREATE DATABASE dbVendas
+GO
+USE dbVendas
+GO
+
+/* CRIAÇÃO DE TABELA */
+CREATE TABLE tbVendedor (
+	  cdVendedor INT NOT NULL	
+	, nmVendedor VARCHAR(40) 
+	, dsEndereco VARCHAR(40)
+	, cdCPF VARCHAR(15)
+	, nmCidade VARCHAR(40)
+	, nmBairro VARCHAR(40)
+	, sgEstado CHAR(02)
+	, cdTelefone VARCHAR(20)
+	, dsEmail VARCHAR(60)
+)
+
+CREATE TABLE tbComprador(
+	  cdComprador INT NOT NULL
+	, nmComprador VARCHAR(40)
+	, dsEndereco VARCHAR(40)
+	, cdCPF VARCHAR(20)
+	, nmCidade VARCHAR(40)
+	, nmBairro VARCHAR(40)
+	, sgEstado CHAR(02)
+	, cdTelefone VARCHAR(20)
+	, dsEmail VARCHAR(60)
+)
+CREATE TABLE tbImovel(
+	  cdImovel INT NOT NULL
+	, cdVendedor INT NOT NULL
+	, cdBairro INT NOT NULL
+	, cdCidade INT NOT NULL
+	, sgEstado CHAR(02)
+	, dsEndereco VARCHAR(40)
+	, qtAreaUtil DECIMAL(10,2)
+	, qtAreaTotal DECIMAL(10,2)
+	, dsImovel VARCHAR(300)
+	, vlImovel MONEY
+	, qtOferta INT
+	, icVendido CHAR(1)
+	, dtLancto DATETIME
+	, qtImovelIndicado INT
+
+)
+
+CREATE TABLE tbOferta(
+	  cdComprador INT NOT NULL
+	, cdImovel	INT NOT NULL
+	, vlOferta MONEY
+	, dtOferta DATETIME
+)
+
+CREATE TABLE tbEstado(
+	  sgEstado CHAR(02) NOT NULL
+	, nmEstado VARCHAR(40)
+)
+
+CREATE TABLE tbCidade(
+	  cdCidade INT NOT NULL
+	, sgEstado CHAR(02) NOT NULL
+	, nmCidade VARCHAR(40)
+)
+
+CREATE TABLE tbBairro(
+	  cdBairro INT NOT NULL
+	, cdCidade INT NOT NULL
+	, sgEstado CHAR(02) NOT NULL
+	, nmBairro VARCHAR(40)
+)
+
+CREATE TABLE tbFaixaImovel(
+	  cdFaixa INT NOT NULL
+	, nm_Faixa VARCHAR(20)
+	, vlMaximo MONEY
+	, vlMinimo MONEY
+)
+
+/*ATRIBUIÇÃO DE CHAVE PRIMÁRIA*/
+
+ALTER TABLE tbVendedor
+ADD PRIMARY KEY (cdVendedor)
+
+ALTER TABLE tbComprador
+ADD PRIMARY KEY (cdComprador)
+
+ALTER TABLE tbImovel
+ADD PRIMARY KEY (cdImovel)
+
+--ALTER TABLE tbOferta
+--ADD PRIMARY KEY (cdComprador, cdImovel)
+
+ALTER TABLE tbEstado
+ADD PRIMARY KEY (sgEstado)
+
+ALTER TABLE tbCidade
+ADD PRIMARY KEY (cdCidade)
+
+ALTER TABLE tbBairro
+ADD PRIMARY KEY (cdBairro, cdCidade, sgEstado )
+
+ALTER TABLE tbFaixaImovel
+ADD PRIMARY KEY (cdFaixa)
+
+/*ATRIBUIÇÃO DE CHAVE ESTRANGEIRA*/
+
+ALTER TABLE tbOferta
+ADD FOREIGN KEY (cdComprador)
+REFERENCES tbComprador
+
+ALTER TABLE tbOferta
+ADD FOREIGN KEY (cdImovel)
+REFERENCES tbImovel
+
+ALTER TABLE tbImovel
+ADD FOREIGN KEY (cdVendedor)
+REFERENCES tbVendedor
+
+ALTER TABLE tbCidade
+ADD FOREIGN KEY (sgEstado)
+REFERENCES tbEstado
+
+ALTER TABLE tbBairro
+ADD FOREIGN KEY (cdCidade)
+REFERENCES tbCidade
+
+ALTER TABLE tbImovel
+ADD FOREIGN KEY (cdBairro, cdCidade, sgEstado)
+REFERENCES tbBairro
