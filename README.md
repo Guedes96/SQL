@@ -2,4 +2,4 @@
 
 ## Usando Microsoft SQL Server Management Studio
 
-DB_Teste -> CREATE, ALTER
+DB_PrimeiroDB -> CREATE, ALTER
