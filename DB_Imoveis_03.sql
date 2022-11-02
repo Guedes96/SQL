@@ -1,10 +1,12 @@
 
 USE DBimoveis
 
+--Atividade 01--
+
 -- 1. Inclua linhas na tabela ESTADO:
 
 INSERT INTO tbEstado
-	VALUES ('SP', 'S√O  PAULO')
+	VALUES ('SP', 'S√ÉO  PAULO')
 		 , ('RJ', 'RIO DE JANEIRO')
 		  
 -- 2. Inclua linhas na tabela CIDADE:
@@ -61,7 +63,8 @@ INSERT INTO tbOferta
 		  , (3, 1, 160000, '05-01-09')
 		  , (3, 2, 140000, '20-02-09')
 
--- 8. Inclua linhas na tabela FAIXA_IMOVEL:
+-- 8. Inclua linhas na tabela FAIXA_IMOVEL:
+
 INSERT INTO tbFaixaImovel
 	VALUES (1,'BAIXO',0,105000)
 		 , (2,'MEDIO',105001,180000)
