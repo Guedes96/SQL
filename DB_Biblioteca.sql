@@ -76,10 +76,10 @@ INSERT INTO tbLivro (cd_Livro, nm_Titulo, cd_Editora, sg_Assunto, vl_Livro)
 -- Atividade -- 
 
 /* 1. Criar a tabela Autor_Livro do relacionamento N para N, utilizando uma
-instruÁ„o SQL sem especificar as (chaves) restriÁıes de integridade.
-Depois altere a tabela de forma a incluir a chave prim·ria nomeando a
-restriÁ„o para PK_AutorLivro e as chaves estrangeiras, nomeando as
-restriÁıes para FK_Autor e FK_Livro. */
+instru√ß√£o SQL sem especificar as (chaves) restri√ß√µes de integridade.
+Depois altere a tabela de forma a incluir a chave prim√°ria nomeando a
+restri√ß√£o para PK_AutorLivro e as chaves estrangeiras, nomeando as
+restri√ß√µes para FK_Autor e FK_Livro. */
 
 CREATE TABLE tbAutorLivro(
 	cd_Livro INT NOT NULL,
@@ -106,8 +106,8 @@ INSERT INTO tbAutorLivro
 		 , (4, 2)
 		 , (4, 3)
 
-/* 2. Crie uma instruÁ„o para adicionar a coluna qt_Edicao na tabela Livro, essa
-coluna deve aceitar n˙meros inferior a 20. Depois escreva outra instruÁ„o
+/* 2. Crie uma instru√ß√£o para adicionar a coluna qt_Edicao na tabela Livro, essa
+coluna deve aceitar n√∫meros inferior a 20. Depois escreva outra instru√ß√£o
 para remover a coluna qt_Edicao da tabela Livro. */
 
 ALTER TABLE tbLivro
@@ -124,26 +124,28 @@ ALTER TABLE tbLivro
 EXEC SP_RENAME 'tbLivro.vl_livro', 'vl_VolumeLivro'
 
 /* 4. Criar um comando para excluir da tabela Livros aqueles que possuem o
-cÛdigo maior ou igual a 2, que possuem o preÁo maior que 50,00 e j· foram
-lanÁados. */
+c√≥digo maior ou igual a 2, que possuem o pre√ßo maior que 50,00 e j√° foram
+lan√ßados. */
 
 DELETE FROM tbLivro
 	WHERE cd_Livro >= 2 AND vl_VolumeLivro > 50 AND dt_Lancamento IS NULL
 
-/* 5. Atualizar para zero o valor de todos o Livros onde a data de lanÁamento for
+/* 5. Atualizar para zero o valor de todos o Livros onde a data de lan√ßamento for
 nula ou onde seu valor atual for inferior a 5,00. */
 
 UPDATE tbLivro
 	SET vl_VolumeLivro = 0
 	WHERE dt_Lancamento IS NULL OR vl_VolumeLivro < 5
 
-/* 6. Apresente o comando para gerar uma listagem dos cÛdigos dos livros que
-possuem ao menos dois autores */SELECT cd_Livro, COUNT(*) CONTAGEM
+/* 6. Apresente o comando para gerar uma listagem dos c√≥digos dos livros que
+possuem ao menos dois autores.*/
+
+SELECT cd_Livro, COUNT(*) CONTAGEM
 	FROM tbAutorLivro
 	GROUP BY cd_Livro
 	HAVING COUNT(*) > 1
 
-/* 7. Escreva o comando para apresentar o preÁo mÈdio dos livros por cÛdigo de
+/* 7. Escreva o comando para apresentar o pre√ßo m√©dio dos livros por c√≥digo de
 editora. Considere somente aqueles que custam mais de 45,00. */
 
 SELECT cd_Editora, AVG(vl_VolumeLivro) MEDIA
@@ -151,9 +153,9 @@ SELECT cd_Editora, AVG(vl_VolumeLivro) MEDIA
 	WHERE vl_VolumeLivro > 45
 	GROUP BY cd_Editora
 
-/* 8. Apresente o cÛdigo do livro, o nome do livro, o nome do assunto de cada
+/* 8. Apresente o c√≥digo do livro, o nome do livro, o nome do assunto de cada
 livro e o valor do livro, onde o valor seja diferente de zero e o assunto igual
-a ìDî ou ìAî. */
+a ‚ÄúD‚Äù ou ‚ÄúA‚Äù. */
 
 SELECT L.cd_Livro, L.nm_Titulo, A.ds_Assunto, L.vl_VolumeLivro
 	FROM tbLivro L INNER JOIN tbAssunto A
