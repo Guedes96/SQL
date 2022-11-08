@@ -11,4 +11,5 @@
 - Aula 05 -> DB_Biblioteca -> REVISÃO MATÉRIA
 - Aula 05 -> DB_Equipa -> REVISÃO MATÉRIA
 - Aula 06 -> DB_Equipa_02 -> Comandos da DML - Select com Join -> Lista de Exercícios 01
+- Aula 06 -> DB_Imoveis_07 -> Comandos da DML - Select com Join -> Lista de Exercícios 02
 
