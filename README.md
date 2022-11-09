@@ -14,5 +14,8 @@
 - Aula 06 -> DB_Imoveis_07 -> Comandos da DML - Select com Join -> Lista de Exercícios 02
 - Aula 07 -> DB_Imoveis_08 -> Comandos da DML - Subquery
 - Aula 08 -> DB_Imoveis_09 -> Comandos da DML - Stored Procedure e Function
+- Aula 09 -> DB_Imoveis_10 -> Comandos da DML - Stored Procedure e Trigger
+
+
 
 
